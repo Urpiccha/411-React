@@ -15,6 +15,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Dashboard from "./components/Dashboard";
+import SignIn from "./components/SignIn";
 
 const useStyles = makeStyles(theme => ({
 	grow: {
@@ -224,6 +225,7 @@ export default function PrimarySearchAppBar() {
 					</div>
 				</Toolbar>
 			</AppBar>
+			<SignIn />
 			{renderMobileMenu}
 			{renderMenu}
 		</div>
