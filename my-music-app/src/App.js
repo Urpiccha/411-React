@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 // import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-// import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
 import SignIn from "./components/SignIn";
 
 const useStyles = makeStyles(theme => ({
@@ -42,7 +42,8 @@ export default function ButtonAppBar() {
 				</Toolbar>
 			</AppBar>
 			<br />
-			<SignIn />
+			<Dashboard/>
+			{/* {loggedIn ? <Dashboard /> : <SignIn />} */}
 		</div>
 	);
 }
