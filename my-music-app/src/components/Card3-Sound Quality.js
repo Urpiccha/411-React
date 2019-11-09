@@ -8,8 +8,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
+	
 	card: {
 		minWidth: 275
 	},
@@ -35,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+
 export default function SoundQuality() {
 	const classes = useStyles();
 	const [SoundQuality, setSoundQuality] = React.useState("");
@@ -56,25 +59,18 @@ export default function SoundQuality() {
 		<Card className={classes.card}>
 			<CardContent>
 				<div>
-					<Button className={classes.button} onClick={handleOpen}>
-						Open the select
-					</Button>
+					<Typography className={classes.fontWeight}>
+						Sound Quality
+					</Typography>
 					<FormControl className={classes.formControl}>
-						<InputLabel id="demo-controlled-open-select-label">
-							Sound Quality
-						</InputLabel>
+						<InputLabel></InputLabel>
 						<Select
-							labelId="demo-controlled-open-select-label"
-							id="demo-controlled-open-select"
 							open={open}
 							onClose={handleClose}
 							onOpen={handleOpen}
-							value={SoundQuality}
+							value={setSoundQuality}
 							onChange={handleChange}
 						>
-							<MenuItem value="">
-								<em>None</em>
-							</MenuItem>
 							<MenuItem value={10}>Low</MenuItem>
 							<MenuItem value={20}>Normal</MenuItem>
 							<MenuItem value={30}>High</MenuItem>
@@ -88,50 +84,3 @@ export default function SoundQuality() {
 		</Card>
 	);
 }
-
-// Controlled Open Select
-
-// export default function SoundQuality() {
-// //   const classes = useStyles();
-// //   const [SoundQuality, setSoundQuality] = React.useState('');
-// //   const [open, setOpen] = React.useState(false);
-
-//   const handleChange = event => {
-//     SoundQuality(event.target.value);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
-
-//   return (
-// <div>
-//   <Button className={classes.button} onClick={handleOpen}>
-//     Open the select
-//   </Button>
-//   <FormControl className={classes.formControl}>
-//     <InputLabel id="demo-controlled-open-select-label">Sound Quality</InputLabel>
-//     <Select
-//       labelId="demo-controlled-open-select-label"
-//       id="demo-controlled-open-select"
-//       open={open}
-//       onClose={handleClose}
-//       onOpen={handleOpen}
-//       value={SoundQuality}
-//       onChange={handleChange}
-//     >
-//       <MenuItem value="">
-//         <em>None</em>
-//       </MenuItem>
-//       <MenuItem value={10}>Low</MenuItem>
-//       <MenuItem value={20}>Normal</MenuItem>
-//       <MenuItem value={30}>High</MenuItem>
-//     </Select>
-//   </FormControl>
-// </div>
-//   );
-// }
