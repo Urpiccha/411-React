@@ -58,7 +58,7 @@ export default class MasterVolumeCard {
 
   classes = this.useStyles;
   
- // [value, setValue] = React.useState(20);
+  //[value, setValue] = React.useState(20);
   
   handleChange = (event, newValue) => {
       this.setValue(newValue);
