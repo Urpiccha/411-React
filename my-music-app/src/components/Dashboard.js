@@ -18,11 +18,11 @@ export default class Dashboard extends Component {
 
 	render(){
 		
-	return <div>
-				<NavBar/>
-				<MasterVolumeCard/>
-				<SoundQuality/>
-				
-			</div>;
+		return <div>
+					<NavBar/>
+					<MasterVolumeCard/>
+					<SoundQuality/>
+					
+				</div>;
 	}
 }
