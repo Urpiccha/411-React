@@ -1,21 +1,26 @@
-import React from "react";
-import { GridList, GridTile } from "material-ui/GridList";
+import React, { Component } from "react";
+import NavBar from "./NavBar";
 import MasterVolumeCard from "./MasterVolumeCard";
-import OnlineMode from "./OnlineMode";
+import SoundQuality from "./Card3-Sound Quality";
 
-function Dashboard() {
-	return (
-		<div>
-			<GridList col={3}>
-				<GridTile>
-					<MasterVolumeCard />
-				</GridTile>
-				<br />
-				<GridTile>
-					<OnlineMode />
-				</GridTile>
-			</GridList>
-		</div>
-	);
+export default class Dashboard extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 20,
+			online: true,
+			quality: "Normal",
+			user: "user"
+		};
+	}
+
+	render() {
+		return (
+			<div>
+				<NavBar />
+				<MasterVolumeCard />
+				<SoundQuality />
+			</div>
+		);
+	}
 }
-export default Dashboard;

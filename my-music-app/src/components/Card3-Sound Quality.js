@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SoundQuality() {
 	const classes = useStyles();
-	const bull = <span className={classes.bullet}>•</span>;
 	const [SoundQuality, setSoundQuality] = React.useState("");
 	const [open, setOpen] = React.useState(false);
 
@@ -56,7 +55,6 @@ export default function SoundQuality() {
 	return (
 		<Card className={classes.card}>
 			<CardContent>
-					
 				<div>
 					<Button className={classes.button} onClick={handleOpen}>
 						Open the select
@@ -82,15 +80,11 @@ export default function SoundQuality() {
 							<MenuItem value={30}>High</MenuItem>
 						</Select>
 					</FormControl>
-				</div>
-				//{" "}
-			</CardContent>
-			//{" "}
+				</div>{" "}
+			</CardContent>{" "}
 			<CardActions>
-				// <Button size="small">Learn More</Button>
-				//{" "}
-			</CardActions>
-			//{" "}
+				<Button size="small">Learn More</Button>{" "}
+			</CardActions>{" "}
 		</Card>
 	);
 }

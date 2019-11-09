@@ -41,8 +41,7 @@ export default function ButtonAppBar() {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<br />
-			{/* <SignIn /> */}
+			<Dashboard />
 		</div>
 	);
 }
