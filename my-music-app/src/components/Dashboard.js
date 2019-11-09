@@ -19,6 +19,7 @@ export default class Dashboard extends Component {
 				<NavBar/>
 				<MasterVolumeCard/>
 				<SoundQuality/>
+				
 			</div>;
 	}
 }
