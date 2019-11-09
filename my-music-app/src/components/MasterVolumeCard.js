@@ -10,7 +10,8 @@ import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
-export default class MasterVolumeCard {
+
+export default class MasterVolumeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +57,7 @@ export default class MasterVolumeCard {
     },
   ];
 
-  classes = this.useStyles;
+  classes = () => this.useStyles;
   
   //[value, setValue] = React.useState(20);
   
@@ -64,11 +65,11 @@ export default class MasterVolumeCard {
       this.setValue(newValue);
     };
   
-  return (){
-    render (
-    <Card className={classes.card}>
+  render (){
+    return (
+    <Card className={this.classes.card}>
       <CardContent>
-       <div className={classes.root}>
+       <div className={this.classes.root}>
         <Typography id="discrete-slider" gutterBottom>
           Volume
         </Typography>
