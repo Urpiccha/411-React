@@ -62,9 +62,9 @@ export default class MasterVolumeCard extends Component {
   
   handleChange = (value, event) => {
     console.log(value)
-      this.setState({volume: value});
+      this.setState({volume: event.target.value});
     };
-  
+
   render (){
     return (
     <Card className={this.classes.card}>
@@ -74,15 +74,15 @@ export default class MasterVolumeCard extends Component {
           Volume
         </Typography>
         <Slider
-          defaultValue={this.state.volume}
+          defaultValue={20}
           aria-labelledby="discrete-slider"
           valueLabelDisplay="on"
           step={10}
           marks
           min={0}
           max={100}
-          value={this.state.volume}
-          onChange={this.handleChange}
+          //value={this.state.volume}
+          onChange={this.slideChange}
         />
       </div> 
       </CardContent>
