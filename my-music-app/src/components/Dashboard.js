@@ -1,14 +1,24 @@
-import React from "react";
+import React, {Component} from "react";
 import NavBar from "./NavBar";
 import MasterVolumeCard from "./MasterVolumeCard";
 import SoundQuality from "./Card3-Sound Quality";
 
-function Dashboard() {
-	return <div>
-			<NavBar/>
-			<MasterVolumeCard/>
-			<SoundQuality/>
-		</div>;
-}
+export default class Dashboard extends Component {
+	state = {
+		value: 20,
+		online: true,
+		quality: "Normal",
+		user: "user"
+	};
 
-export default Dashboard;
+	
+
+	render(){
+		
+	return <div>
+				<NavBar/>
+				<MasterVolumeCard/>
+				<SoundQuality/>
+			</div>;
+	}
+}
