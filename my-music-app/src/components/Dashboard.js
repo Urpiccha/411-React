@@ -26,13 +26,25 @@ export default class Dashboard extends Component {
 			value: 20,
 			online: true,
 			quality: "Normal",
-			user: "user"
+			user: "user",
+			notification: []
 		};
 	}
+	toggleNotification = msg => {
+		let msgIndex = this.state.notification.indexOf(msg);
+
+		if (this.state.notification.includes(msg)) {
+			this.state.notification.splice(msgIndex, 1);
+		} else {
+			this.setState({ notification: [...this.state.notification, msg] });
+		}
+	};
+	//Your application is offline. You won't be able to share or stream music to other devices..
 
 	render() {
 		return (
 			<div>
+				<h1>Welcome User!</h1>
 				<NavBar />
 				<MasterVolumeCard />
 				<SoundQuality />
