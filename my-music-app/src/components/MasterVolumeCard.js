@@ -15,7 +15,7 @@ export default class MasterVolumeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      volume: 0
+      volume: 20,
     }
   }
   
@@ -59,10 +59,10 @@ export default class MasterVolumeCard extends Component {
 
   classes = () => this.useStyles;
   
-  //[value, setValue] = React.useState(20);
   
-  handleChange = (event, newValue) => {
-      this.setValue(newValue);
+  handleChange = (value, event) => {
+    console.log(value)
+      this.setState({volume: value});
     };
   
   render (){
@@ -74,18 +74,20 @@ export default class MasterVolumeCard extends Component {
           Volume
         </Typography>
         <Slider
-          defaultValue={20}
+          defaultValue={this.state.volume}
           aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
+          valueLabelDisplay="on"
           step={10}
           marks
-          min={10}
+          min={0}
           max={100}
+          value={this.state.volume}
+          onChange={this.handleChange}
         />
       </div> 
       </CardContent>
       <CardActions>
-        <Button size="small">Mute</Button>
+        <Button size="small" onClick={()=>this.handleChange(0)}>Mute</Button>
       </CardActions>
     </Card>
     )};
