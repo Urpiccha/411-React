@@ -7,8 +7,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
-import VolumeDown from '@material-ui/icons/VolumeDown';
-import VolumeUp from '@material-ui/icons/VolumeUp';
 
 
 export default class MasterVolumeCard extends Component {
@@ -17,7 +15,8 @@ export default class MasterVolumeCard extends Component {
     this.state = {
       volume: 20,
       mute: false,
-      previousVolume: 40
+      previousVolume: 40,
+      volumeNotification: false
     }
   }
   
@@ -47,13 +46,19 @@ export default class MasterVolumeCard extends Component {
   classes = () => this.useStyles;
   
   muteVolume = (value, event) => {
-    this.setState({mute: !this.state.mute})
-    this.setState({previousVolume: this.state.volume})
-    this.state.mute ? this.setState({volume: 0}) : this.setState({volume: this.state.previousVolume})
+    let newMute = !this.state.mute
+    this.setState({
+      mute: newMute,
+      previousVolume: this.state.volume,
+      volume: (newMute ? 0 : this.state.previousVolume)
+    })
   };
   
     handleChange = (event, newValue) => {
       this.setState({volume: newValue})
+      if(this.state.volume >= 80){
+        this.setState({volumeNotification: true})
+      }
     }
 
   render (){
@@ -78,7 +83,7 @@ export default class MasterVolumeCard extends Component {
       </div> 
       </CardContent>
       <CardActions>
-    <Button size="small" onClick={()=>this.muteVolume()}>{/*this.state.mute ? "Unmute" : "Mute"*/}Mute</Button>
+    <Button size="small" onClick={()=>this.muteVolume()}>{this.state.mute ? "Unmute" : "Mute"}</Button>
       </CardActions>
     </Card>
     )};
