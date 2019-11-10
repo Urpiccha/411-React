@@ -18,7 +18,6 @@ export default class Dashboard extends Component{
 				quality: this.props.qualityNotification
 			}
 		};
-		
 	}
 
 	testing = () => {

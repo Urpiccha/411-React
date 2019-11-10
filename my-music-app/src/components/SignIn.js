@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -26,45 +26,64 @@ function Copyright() {
 	);
 }
 
-const useStyles = makeStyles(theme => ({
-	"@global": {
-		body: {
-			backgroundColor: theme.palette.common.white
+
+export default class SignIn extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: "",
+			password: "",
+			isLoggedIn: false
 		}
-	},
-	paper: {
-		marginTop: theme.spacing(8),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center"
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main
-	},
-	form: {
-		width: "100%", // Fix IE 11 issue.
-		marginTop: theme.spacing(1)
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2)
+	};
+
+
+	userSignIn = () => {
+		const { isLoggedIn } = this.state;
+		this.setState({
+			isLoggedIn: !isLoggedIn
+		})
 	}
-}));
 
-function SignIn() {
-	const classes = useStyles();
+	useStyles = () => makeStyles(theme => ({
+		"@global": {
+			body: {
+				backgroundColor: theme.palette.common.white
+			}
+		},
+		paper: {
+			marginTop: theme.spacing(8),
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center"
+		},
+		avatar: {
+			margin: theme.spacing(1),
+			backgroundColor: theme.palette.secondary.main
+		},
+		form: {
+			width: "100%", // Fix IE 11 issue.
+			marginTop: theme.spacing(1)
+		},
+		submit: {
+			margin: theme.spacing(3, 0, 2)
+		}
+	}));
 
+	classes = () => this.useStyles();
+
+	render(){
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
-			<div className={classes.paper}>
-				<Avatar className={classes.avatar}>
+			<div className={this.classes.paper}>
+				<Avatar className={this.classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={this.classes.form} noValidate>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -96,7 +115,8 @@ function SignIn() {
 						fullWidth
 						variant="contained"
 						color="primary"
-						className={classes.submit}
+						className={this.classes.submit}
+						onClick={this.userSignIn}
 					>
 						Sign In
 					</Button>
@@ -118,7 +138,6 @@ function SignIn() {
 				<Copyright />
 			</Box>
 		</Container>
-	);
+		);
+	}
 }
-
-export default SignIn;

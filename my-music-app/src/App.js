@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Dashboard from "./components/Dashboard";
-// import SignIn from "./components/SignIn";
+import SignIn from "./components/SignIn";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -21,8 +21,10 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(isLoggedIn) {
+
 	const classes = useStyles();
+	console.log(this.props.isLoggedIn(this.state.isLoggedIn))
 
 	return (
 		<div className={classes.root}>
@@ -41,7 +43,9 @@ export default function ButtonAppBar() {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<Dashboard />
+			<SignIn />
+			{/* <button onClick={() => signIn()}>Login</button> */}
+			{/* {signIn ? <Dashboard /> : <SignIn/>} */}
 		</div>
 	);
 }
