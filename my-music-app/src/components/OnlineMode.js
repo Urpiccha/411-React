@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Switch from "react-switch";
 import Grid from "@material-ui/core/Grid";
 
