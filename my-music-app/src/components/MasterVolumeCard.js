@@ -16,6 +16,8 @@ export default class MasterVolumeCard extends Component {
     super(props);
     this.state = {
       volume: 20,
+      mute: false,
+      previousVolume: 20
     }
   }
   
@@ -60,10 +62,20 @@ export default class MasterVolumeCard extends Component {
   classes = () => this.useStyles;
   
   
-  handleChange = (value, event) => {
-    console.log(value)
-      this.setState({volume: event.target.value});
+  muteVolume = (value, event) => {
+    this.setState({mute: !this.state.mute})
+    debugger;
+    this.setState({previousVolume: this.state.volume})
+    debugger;
+    console.log(this.state.volume)
+    console.log(this.state.previousVolume)
+    this.state.mute ? this.setState({volume: 0}) : this.setState({volume: this.state.previousVolume})
+    debugger;
     };
+
+    handleChange = (event, newValue) => {
+      this.setState({volume: newValue})
+    }
 
   render (){
     return (
@@ -81,13 +93,13 @@ export default class MasterVolumeCard extends Component {
           marks
           min={0}
           max={100}
-          //value={this.state.volume}
-          onChange={this.slideChange}
+          value={this.state.volume}
+          onChange={this.handleChange}
         />
       </div> 
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={()=>this.handleChange(0)}>Mute</Button>
+        <Button size="small" onClick={()=>this.muteVolume()}>Mute</Button>
       </CardActions>
     </Card>
     )};
