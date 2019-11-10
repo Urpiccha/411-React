@@ -11,7 +11,7 @@ import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
-	
+
 	card: {
 		minWidth: 275
 	},
@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 	pos: {
 		marginBottom: 12
 	},
-
 	button: {
 		display: "block",
 		marginTop: theme.spacing(2)
@@ -44,6 +43,7 @@ export default function SoundQuality() {
 	const [open, setOpen] = React.useState(false);
 
 	const handleChange = event => {
+		event.preventDefault();
 		SoundQuality(event.target.value);
 	};
 
@@ -56,12 +56,19 @@ export default function SoundQuality() {
 	};
 
 	return (
+		
 		<Card className={classes.card}>
 			<CardContent>
 				<div>
-					<Typography className={classes.fontWeight}>
-						Sound Quality
+
+					<Typography>
+						<h2> Sound Quality </h2>
 					</Typography>
+
+					<Typography>
+						Manually control music quality in event of poor connection.
+					</Typography>
+
 					<FormControl className={classes.formControl}>
 						<InputLabel></InputLabel>
 						<Select
@@ -70,6 +77,7 @@ export default function SoundQuality() {
 							onOpen={handleOpen}
 							value={setSoundQuality}
 							onChange={handleChange}
+							onChange={setSoundQuality}
 						>
 							<MenuItem value={10}>Low</MenuItem>
 							<MenuItem value={20}>Normal</MenuItem>
@@ -78,9 +86,6 @@ export default function SoundQuality() {
 					</FormControl>
 				</div>{" "}
 			</CardContent>{" "}
-			<CardActions>
-				<Button size="small">Learn More</Button>{" "}
-			</CardActions>{" "}
 		</Card>
 	);
 }

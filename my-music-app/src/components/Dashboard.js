@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import MasterVolumeCard from "./MasterVolumeCard";
 import SoundQuality from "./Card3-Sound Quality";
 import OnlineMode from "./OnlineMode";
-// import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
 	root: {
