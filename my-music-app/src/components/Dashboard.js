@@ -13,7 +13,10 @@ export default class Dashboard extends Component{
 			volume: 20,
 			online: true,
 			quality: "Normal",
-			user: "user"
+			user: "user",
+			mute: false,
+			previousVolume: 40,
+			volumeNotification: false
 		};
 	}
 
@@ -34,10 +37,27 @@ export default class Dashboard extends Component{
 	//Your application is offline. You won't be able to share or stream music to other devices..
 
 	toggleOnline = () => {
-		newValue = this.state.online
+		let newValue = this.state.online
 		this.setState({online: !newValue})
 		const message = "Your application is offline! You won't be able to share or stream music to other devices."
 		this.toggleNotification( message );
+	}
+
+	muteVolume = (value, event) => {
+		let newMute = !this.state.mute
+		this.setState({
+		  mute: newMute,
+		  previousVolume: this.state.volume,
+		  volume: (newMute ? 0 : this.state.previousVolume)
+		})
+	  };
+	  
+	handleVolumeChange = (event, newValue) => {
+		this.setState({volume: newValue})
+		if(this.state.volume >= 80){
+			const message = "Listening to a high volume over long periods of time can cause irreversable hearing damage."
+			this.toggleNotification( message );
+		}
 	}
 
 	render(){
@@ -47,12 +67,14 @@ export default class Dashboard extends Component{
 				<NavBar />
 				<MasterVolumeCard 
 					volumeState={this.state.volume}
-					volumeFunction={this.volumeSlider}>
+					volumeChange={this.handleVolumeChange}
+					muteVolume={this.muteVolume}
+					mute={this.state.mute}>
 				</MasterVolumeCard>
 				<SoundQuality />
 				<OnlineMode 
-					onlineState={this.state.online}
-					onlineFunction={this.toggleOnline}>
+					checked={this.state.online}
+					handleChange={this.toggleOnline}>
 				</OnlineMode>
 				<button onClick={() => this.testing()}>Test</button>
 				<div><h1>System Notifications</h1>

@@ -12,5 +12,5 @@ const Main = () => (
     </BrowserRouter>
 )
 
-ReactDOM.render(<Main />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 // ReactDOM.render(<Notification />, document.getElementById("portal"));
