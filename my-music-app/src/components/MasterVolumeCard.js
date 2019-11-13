@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 
 
-export default class MasterVolumeCard extends Component {
+const MasterVolumeCard = props => {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,3 +88,5 @@ export default class MasterVolumeCard extends Component {
     </Card>
     )};
   }
+
+export default MasterVolumeCard;

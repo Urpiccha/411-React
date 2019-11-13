@@ -2,20 +2,12 @@ import React from "react";
 import Switch from "react-switch";
 import Grid from "@material-ui/core/Grid";
 
-class OnlineMode extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			checked: false
-		};
-		this.handleChange = this.handleChange.bind(this);
-	}
-	handleChange(checked) {
-		this.setState({ checked });
-	}
+
+const OnlineMode = props => {
+
 	render() {
 		return (
-			<div>
+			<div className="online-switch">
 				<h2>Online/Offline Mode</h2>
 				<Switch
 					className="online-switch"
