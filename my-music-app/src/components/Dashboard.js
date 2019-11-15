@@ -38,6 +38,10 @@ export default class Dashboard extends Component{
 	};
 	//Your application is offline. You won't be able to share or stream music to other devices..
 
+	displayNotification = msg => {
+		this.setState({notifications: [...this.state.notifications, msg]})
+	}
+
 	toggleOnline = () => {
 		let newValue = this.state.online
 		this.setState({online: !newValue})
