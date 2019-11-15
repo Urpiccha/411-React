@@ -16,7 +16,9 @@ export default class Dashboard extends Component{
 			user: "user",
 			mute: false,
 			previousVolume: 40,
-			volumeNotification: false
+			volumeNotification: false,
+			notifications: []
+
 		};
 	}
 
@@ -51,6 +53,11 @@ export default class Dashboard extends Component{
 		  volume: (newMute ? 0 : this.state.previousVolume)
 		})
 	  };
+
+	SoundQuality = (event) => {
+		this.setState({quality: event.target.value});
+		const message = "The music quality is degraded. Increase the quality if you want to better sounding music."
+	}
 	  
 	handleVolumeChange = (event, newValue) => {
 		this.setState({volume: newValue})
@@ -76,7 +83,6 @@ export default class Dashboard extends Component{
 					checked={this.state.online}
 					handleChange={this.toggleOnline}>
 				</OnlineMode>
-				<button onClick={() => this.testing()}>Test</button>
 				<div><h1>System Notifications</h1>
 				</div>
 			</div>
