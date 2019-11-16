@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar(isLoggedIn) {
 
 	const classes = useStyles();
-	console.log(this.props.isLoggedIn(this.state.isLoggedIn))
+	
 
 	return (
 		<div className={classes.root}>
@@ -43,7 +43,8 @@ export default function ButtonAppBar(isLoggedIn) {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<SignIn />
+			{/* <SignIn /> */}
+			<Dashboard />
 			{/* <button onClick={() => signIn()}>Login</button> */}
 			{/* {signIn ? <Dashboard /> : <SignIn/>} */}
 		</div>

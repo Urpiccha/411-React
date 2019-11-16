@@ -10,13 +10,13 @@ export default class Dashboard extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 20,
+			volume: 20,
 			online: true,
 			quality: "Normal",
 			user: "user",
-			notifications: {
-				quality: this.props.qualityNotification
-			}
+			mute: false,
+			previousVolume: 40,
+			volumeNotification: false
 		};
 	}
 
@@ -25,45 +25,57 @@ export default class Dashboard extends Component{
 	}
 
 	//possible solution to notifications using class component
-	// toggleNotification = msg => {
-	// 	let msgIndex = this.state.notifications.indexOf(msg);
+	toggleNotification = msg => {
+		let msgIndex = this.state.notifications.indexOf(msg);
 
-	// 	if (this.state.notifications.includes(msg)) {
-	// 		this.state.notifications.splice(msgIndex, 1);
-	// 	} else {
-	// 		this.setState({ notifications: [...this.state.notification, msg] });
-	// 	}
-	// };
+		if (this.state.notifications.includes(msg)) {
+			this.state.notifications.splice(msgIndex, 1);
+		} else {
+			this.setState({ notifications: [...this.state.notification, msg] });
+		}
+	};
 	//Your application is offline. You won't be able to share or stream music to other devices..
 
+	toggleOnline = () => {
+		let newValue = this.state.online
+		this.setState({online: !newValue})
+		const message = "Your application is offline! You won't be able to share or stream music to other devices."
+		this.toggleNotification( message );
+	}
 
-	// export default function Dashboard() {
-
-	// 	const useStyles = makeStyles(theme => ({
-	// 		root: {
-	// 			flexGrow: 1
-	// 		},
-	// 		paper: {
-	// 			height: 140,
-	// 			width: 100
-	// 		},
-	// 		control: {
-	// 			padding: theme.spacing(2)
-	// 		}
-	// 	}));
-
-	// 	const [volumeNotification, qualityNotification, onlineNotification] = useState("")
-
-	
+	muteVolume = (value, event) => {
+		let newMute = !this.state.mute
+		this.setState({
+		  mute: newMute,
+		  previousVolume: this.state.volume,
+		  volume: (newMute ? 0 : this.state.previousVolume)
+		})
+	  };
+	  
+	handleVolumeChange = (event, newValue) => {
+		this.setState({volume: newValue})
+		if(this.state.volume >= 80){
+			const message = "Listening to a high volume over long periods of time can cause irreversable hearing damage."
+			this.toggleNotification( message );
+		}
+	}
 
 	render(){
 		return (
 			<div>
 				<h1>Welcome User!</h1>
 				<NavBar />
-				<MasterVolumeCard />
+				<MasterVolumeCard 
+					volumeState={this.state.volume}
+					volumeChange={this.handleVolumeChange}
+					muteVolume={this.muteVolume}
+					mute={this.state.mute}>
+				</MasterVolumeCard>
 				<SoundQuality />
-				<OnlineMode />
+				<OnlineMode 
+					checked={this.state.online}
+					handleChange={this.toggleOnline}>
+				</OnlineMode>
 				<button onClick={() => this.testing()}>Test</button>
 				<div><h1>System Notifications</h1>
 				</div>
