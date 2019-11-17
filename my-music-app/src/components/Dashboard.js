@@ -96,7 +96,7 @@ export default class Dashboard extends Component{
 				<h1>Welcome User!</h1>
 				<NavBar />
 				<MasterVolumeCard 
-					volumeState={this.state.volume}
+					volume={this.state.volume}
 					volumeChange={this.handleVolumeChange}
 					muteVolume={this.muteVolume}
 					mute={this.state.mute}>

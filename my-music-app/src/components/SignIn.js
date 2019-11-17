@@ -26,26 +26,9 @@ function Copyright() {
 	);
 }
 
+	const classes = () => this.useStyles();
 
-export default class SignIn extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: "",
-			password: "",
-			isLoggedIn: false
-		}
-	};
-
-
-	userSignIn = () => {
-		const { isLoggedIn } = this.state;
-		this.setState({
-			isLoggedIn: !isLoggedIn
-		})
-	}
-
-	useStyles = () => makeStyles(theme => ({
+	const useStyles = () => makeStyles(theme => ({
 		"@global": {
 			body: {
 				backgroundColor: theme.palette.common.white
@@ -70,10 +53,8 @@ export default class SignIn extends Component {
 		}
 	}));
 
-	classes = () => this.useStyles();
-
-	render(){
-	return (
+	const SignIn = props => (
+	
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={this.classes.paper}>
@@ -83,7 +64,7 @@ export default class SignIn extends Component {
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={this.classes.form} noValidate>
+				<form className={this.classes.form} noValidate> //what's form doing
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -116,7 +97,8 @@ export default class SignIn extends Component {
 						variant="contained"
 						color="primary"
 						className={this.classes.submit}
-						onClick={this.userSignIn}
+						logIn={props.signIn}
+						onClick={props.signIn}
 					>
 						Sign In
 					</Button>
@@ -139,5 +121,13 @@ export default class SignIn extends Component {
 			</Box>
 		</Container>
 		);
-	}
-}
+
+export default SignIn;
+
+
+// userSignIn = () => {
+// 	const { isLoggedIn } = this.state;
+// 	this.setState({
+// 		isLoggedIn: !isLoggedIn
+// 	})
+// }

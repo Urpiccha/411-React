@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,33 +21,58 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function ButtonAppBar(isLoggedIn) {
+export default class ButtonAppBar extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			signIn: false
+		};
 
-	const classes = useStyles();
+	}
+
+	userSignIn = () => {
+			this.setState({
+				sighIn: true
+			})
+		}
+
+
+	classes = () => useStyles();
+
+	// const signIn = false;
+
+	// const logIn = () => {
+	// 	signIn = !signIn
+	// }
 	
-
+render(){
 	return (
-		<div className={classes.root}>
+		<div className={this.classes.root}>
 			<AppBar position="static">
 				<Toolbar>
 					<IconButton
 						edge="start"
-						className={classes.menuButton}
+						className={this.classes.menuButton}
 						color="inherit"
 						aria-label="menu"
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" className={classes.title}>
+					<Typography variant="h6" className={this.classes.title}>
 						Get Some!
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<SignIn />
+			<SignIn
+			signIn={this.userSignIn}
+			>
+
+			</SignIn>
 			<Dashboard />
-			<button onClick={() => signIn()}>Login</button>
-			{signIn ? <Dashboard /> : <SignIn/>}
+			{/* <button onClick={() => logIn()}>Login</button> */}
+			{/* {signIn ? <Dashboard /> : <SignIn/>} */}
 		</div>
 	);
 }
+};
 
