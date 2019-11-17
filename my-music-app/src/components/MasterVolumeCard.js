@@ -53,7 +53,7 @@ const MasterVolumeCard = props => (
           min={0}
           max={100}
           value={props.volume}
-          onChange={props.handleVolumeChange}
+          onChange={props.volumeChange}
         />
       </div> 
       </CardContent>

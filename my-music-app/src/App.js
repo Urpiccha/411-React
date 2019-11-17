@@ -43,10 +43,11 @@ export default function ButtonAppBar(isLoggedIn) {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			{/* <SignIn /> */}
+			<SignIn />
 			<Dashboard />
-			{/* <button onClick={() => signIn()}>Login</button> */}
-			{/* {signIn ? <Dashboard /> : <SignIn/>} */}
+			<button onClick={() => signIn()}>Login</button>
+			{signIn ? <Dashboard /> : <SignIn/>}
 		</div>
 	);
 }
+

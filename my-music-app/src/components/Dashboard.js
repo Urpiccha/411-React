@@ -27,19 +27,24 @@ export default class Dashboard extends Component{
 	}
 
 	//possible solution to notifications using class component
-	toggleNotification = msg => {
-		let msgIndex = this.state.notifications.indexOf(msg);
+	toggleNotification = (alert) => {
+		const baseCall = this.state.notifications.indexOf(alert); 
 
-		if (this.state.notifications.includes(msg)) {
-			this.state.notifications.splice(msgIndex, 1);
+		if (this.state.notifications.includes(alert)) {
+			this.state.notifications.splice(baseCall, 1);
 		} else {
-			this.setState({ notifications: [...this.state.notification, msg] });
+			this.setState({ notifications: [alert] });
 		}
 	};
+
+	removeNotification = (alert) => {
+		const baseCall = this.state.notifications.indexOf(alert)
+		this.state.notification.splice (baseCall, 1)
+	}
 	//Your application is offline. You won't be able to share or stream music to other devices..
 
-	displayNotification = msg => {
-		this.setState({notifications: [...this.state.notifications, msg]})
+	displayNotification = (alert) => {
+		this.setState({notifications: [...this.state.notifications, alert]})
 	}
 
 	toggleOnline = () => {
@@ -58,16 +63,30 @@ export default class Dashboard extends Component{
 		})
 	  };
 
+	  handleChange = (event, newValue) => {
+		  this.setState ({volume: newValue})
+		  if(newValue >= 80) {
+			  this.setState({volumeNotification: true})
+		  }
+	  }
+
 	SoundQuality = (event) => {
 		this.setState({quality: event.target.value});
-		const message = "The music quality is degraded. Increase the quality if you want to better sounding music."
+		const alert = "The music quality is degraded. Increase the quality if you want to better sounding music."
+
+		if ((event.target.value === 'low') && !this.state.notifications.includes (alert)) {
+			this.addNotification (alert)
+		}
+		if ((event.target.value !== 'low') && this.state.notifications.includes (alert)) {
+			this.removeNotification (alert)
+		}
 	}
 	  
 	handleVolumeChange = (event, newValue) => {
 		this.setState({volume: newValue})
-		if(this.state.volume >= 80){
+		if(newValue >= 80){
 			const message = "Listening to a high volume over long periods of time can cause irreversable hearing damage."
-			this.toggleNotification( message );
+			this.toggleNotification ( message );
 		}
 	}
 
@@ -82,12 +101,15 @@ export default class Dashboard extends Component{
 					muteVolume={this.muteVolume}
 					mute={this.state.mute}>
 				</MasterVolumeCard>
-				<SoundQuality />
+				<SoundQuality 
+					SoundQuality={this.handleSoundQuality}>
+				</SoundQuality>
 				<OnlineMode 
 					checked={this.state.online}
 					handleChange={this.toggleOnline}>
 				</OnlineMode>
 				<div><h1>System Notifications</h1>
+					<p>{this.state.notifications}</p>
 				</div>
 			</div>
 		);
