@@ -26,7 +26,6 @@ function Copyright() {
 	);
 }
 
-	const classes = () => this.useStyles();
 
 	const useStyles = makeStyles(theme => ({
 		"@global": {
@@ -52,20 +51,22 @@ function Copyright() {
 			margin: theme.spacing(3, 0, 2)
 		}
 	}));
+
+	const classes = () => useStyles;
 	
 
 	const SignIn = props => (
 	
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
-			<div className={this.classes.paper}>
-				<Avatar className={this.classes.avatar}>
+			<div className={classes.paper}>
+				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={this.classes.form} noValidate>
+				<form className={classes.form} noValidate>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -97,7 +98,7 @@ function Copyright() {
 						fullWidth
 						variant="contained"
 						color="primary"
-						className={this.classes.submit}
+						className={classes.submit}
 						logIn={props.signIn}
 						onClick={props.signIn}
 					>

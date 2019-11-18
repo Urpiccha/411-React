@@ -32,7 +32,7 @@ export default class ButtonAppBar extends Component {
 
 	userSignIn = () => {
 			this.setState({
-				sighIn: true
+				signIn: true
 			})
 		}
 
@@ -63,14 +63,10 @@ render(){
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<SignIn
-			signIn={this.userSignIn}
-			>
-
-			</SignIn>
-			<Dashboard />
+			{/* </SignIn> */}
+			{/* <Dashboard /> */}
 			{/* <button onClick={() => logIn()}>Login</button> */}
-			{/* {signIn ? <Dashboard /> : <SignIn/>} */}
+			{this.state.signIn ? <Dashboard /> : <SignIn signIn={this.userSignIn}/>}
 		</div>
 	);
 }

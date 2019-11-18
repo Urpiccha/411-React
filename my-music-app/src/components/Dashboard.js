@@ -18,7 +18,6 @@ export default class Dashboard extends Component{
 			previousVolume: 40,
 			volumeNotification: false,
 			notifications: []
-
 		};
 	}
 
@@ -95,6 +94,12 @@ export default class Dashboard extends Component{
 			<div>
 				<h1>Welcome User!</h1>
 				<NavBar />
+				<Grid
+					container
+					direction="row"
+					justify="center"
+					alignItems="center"
+					>
 				<MasterVolumeCard 
 					volume={this.state.volume}
 					volumeChange={this.handleVolumeChange}
@@ -111,6 +116,7 @@ export default class Dashboard extends Component{
 				<div><h1>System Notifications</h1>
 					<p>{this.state.notifications}</p>
 				</div>
+				</Grid>
 			</div>
 		);
 	}
