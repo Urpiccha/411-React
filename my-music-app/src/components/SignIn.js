@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -28,7 +28,7 @@ function Copyright() {
 
 	const classes = () => this.useStyles();
 
-	const useStyles = () => makeStyles(theme => ({
+	const useStyles = makeStyles(theme => ({
 		"@global": {
 			body: {
 				backgroundColor: theme.palette.common.white
@@ -52,6 +52,7 @@ function Copyright() {
 			margin: theme.spacing(3, 0, 2)
 		}
 	}));
+	
 
 	const SignIn = props => (
 	
@@ -64,7 +65,7 @@ function Copyright() {
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={this.classes.form} noValidate> //what's form doing
+				<form className={this.classes.form} noValidate>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -123,11 +124,3 @@ function Copyright() {
 		);
 
 export default SignIn;
-
-
-// userSignIn = () => {
-// 	const { isLoggedIn } = this.state;
-// 	this.setState({
-// 		isLoggedIn: !isLoggedIn
-// 	})
-// }
