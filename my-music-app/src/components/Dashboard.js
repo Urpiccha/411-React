@@ -69,14 +69,14 @@ export default class Dashboard extends Component{
 		  }
 	  }
 
-	SoundQuality = (event) => {
+	handleSoundQuality = (event) => {
 		this.setState({quality: event.target.value});
 		const alert = "The music quality is degraded. Increase the quality if you want to better sounding music."
 
-		if ((event.target.value === 'low') && !this.state.notifications.includes (alert)) {
-			this.addNotification (alert)
+		if ((event.target.value === 'Low') && !this.state.notifications.includes (alert)) {
+			this.toggleNotification (alert)
 		}
-		if ((event.target.value !== 'low') && this.state.notifications.includes (alert)) {
+		if ((event.target.value !== 'Low') && this.state.notifications.includes (alert)) {
 			this.removeNotification (alert)
 		}
 	}
@@ -107,7 +107,8 @@ export default class Dashboard extends Component{
 					mute={this.state.mute}>
 				</MasterVolumeCard>
 				<SoundQuality 
-					SoundQuality={this.handleSoundQuality}>
+					soundQuality={this.state.quality}
+					qualityChange={this.handleSoundQuality}>
 				</SoundQuality>
 				<OnlineMode 
 					checked={this.state.online}

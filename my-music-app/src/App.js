@@ -38,37 +38,28 @@ export default class ButtonAppBar extends Component {
 
 
 	classes = () => useStyles();
-
-	// const signIn = false;
-
-	// const logIn = () => {
-	// 	signIn = !signIn
-	// }
-	
-render(){
-	return (
-		<div className={this.classes.root}>
-			<AppBar position="static">
-				<Toolbar>
-					<IconButton
-						edge="start"
-						className={this.classes.menuButton}
-						color="inherit"
-						aria-label="menu"
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" className={this.classes.title}>
-						Get Some!
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			{/* </SignIn> */}
-			{/* <Dashboard /> */}
-			{/* <button onClick={() => logIn()}>Login</button> */}
-			{this.state.signIn ? <Dashboard /> : <SignIn signIn={this.userSignIn}/>}
-		</div>
-	);
-}
+		
+	render(){
+		return (
+			<div className={this.classes.root}>
+				<AppBar position="static">
+					<Toolbar>
+						<IconButton
+							edge="start"
+							className={this.classes.menuButton}
+							color="inherit"
+							aria-label="menu"
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" className={this.classes.title}>
+							Get Some!
+						</Typography>
+					</Toolbar>
+				</AppBar>
+				{this.state.signIn ? <Dashboard /> : <SignIn signIn={this.userSignIn}/>}
+			</div>
+		);
+	}
 };
 
