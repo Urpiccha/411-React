@@ -91,7 +91,7 @@ export default class Dashboard extends Component{
 
 	render(){
 		return (
-			<div>
+			<>
 				<h1>Welcome User!</h1>
 				<NavBar />
 				<Grid
@@ -114,11 +114,11 @@ export default class Dashboard extends Component{
 					checked={this.state.online}
 					handleChange={this.toggleOnline}>
 				</OnlineMode>
-				<div><h1>System Notifications</h1>
-					<p>{this.state.notifications}</p>
-				</div>
+					<div><h1>System Notifications</h1>
+						<p>{this.state.notifications}</p>
+					</div>
 				</Grid>
-			</div>
+			</>
 		);
 	}
 }
