@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
+// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
+// import Button from "@material-ui/core/Button";
+// import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -36,15 +36,14 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-
-export default function SoundQuality() {
+export default function SoundQuality(props) {
 	const classes = useStyles();
 	const [SoundQuality, setSoundQuality] = React.useState("");
 	const [open, setOpen] = React.useState(false);
 
 	const handleChange = event => {
-		event.preventDefault();
-		SoundQuality(event.target.value);
+		let quality = event.target.value
+
 	};
 
 	const handleClose = () => {
@@ -70,18 +69,12 @@ export default function SoundQuality() {
 					</Typography>
 
 					<FormControl className={classes.formControl}>
-						<InputLabel></InputLabel>
 						<Select
-							open={open}
-							onClose={handleClose}
-							onOpen={handleOpen}
-							value={setSoundQuality}
-							onChange={handleChange}
-							onChange={setSoundQuality}
-						>
-							<MenuItem value={10}>Low</MenuItem>
-							<MenuItem value={20}>Normal</MenuItem>
-							<MenuItem value={30}>High</MenuItem>
+							value={props.soundQuality}
+							onChange={props.qualityChange}>
+							<MenuItem value={'Low'}>Low</MenuItem>
+							<MenuItem value={'Normal'}>Normal</MenuItem>
+							<MenuItem value={'High'}>High</MenuItem>
 						</Select>
 					</FormControl>
 				</div>{" "}

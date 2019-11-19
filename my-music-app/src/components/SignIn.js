@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -27,25 +27,7 @@ function Copyright() {
 }
 
 
-export default class SignIn extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: "",
-			password: "",
-			isLoggedIn: false
-		}
-	};
-
-
-	userSignIn = () => {
-		const { isLoggedIn } = this.state;
-		this.setState({
-			isLoggedIn: !isLoggedIn
-		})
-	}
-
-	useStyles = () => makeStyles(theme => ({
+	const useStyles = makeStyles(theme => ({
 		"@global": {
 			body: {
 				backgroundColor: theme.palette.common.white
@@ -70,20 +52,21 @@ export default class SignIn extends Component {
 		}
 	}));
 
-	classes = () => this.useStyles();
+	const classes = () => useStyles;
+	
 
-	render(){
-	return (
+	const SignIn = props => (
+	
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
-			<div className={this.classes.paper}>
-				<Avatar className={this.classes.avatar}>
+			<div className={classes.paper}>
+				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={this.classes.form} noValidate>
+				<form className={classes.form} noValidate>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -115,8 +98,9 @@ export default class SignIn extends Component {
 						fullWidth
 						variant="contained"
 						color="primary"
-						className={this.classes.submit}
-						onClick={this.userSignIn}
+						className={classes.submit}
+						logIn={props.signIn}
+						onClick={props.signIn}
 					>
 						Sign In
 					</Button>
@@ -139,5 +123,5 @@ export default class SignIn extends Component {
 			</Box>
 		</Container>
 		);
-	}
-}
+
+export default SignIn;

@@ -9,63 +9,38 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 
 
-export default class MasterVolumeCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      volume: 20,
-      mute: false,
-      previousVolume: 40,
-      volumeNotification: false
-    }
-  }
+const MasterVolumeCard = props => (
   
-  useStyles = makeStyles(theme => ({
-    card: {
-      minWidth: 275,
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-    root: {
-      width: 300,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }));
+  // const useStyles = makeStyles(theme => ({
+  //   card: {
+  //     minWidth: 275,
+  //   },
+  //   bullet: {
+  //     display: 'inline-block',
+  //     margin: '0 2px',
+  //     transform: 'scale(0.8)',
+  //   },
+  //   title: {
+  //     fontSize: 14,
+  //   },
+  //   pos: {
+  //     marginBottom: 12,
+  //   },
+  //   root: {
+  //     width: 300,
+  //   },
+  //   margin: {
+  //     height: theme.spacing(3),
+  //   },
+  // }));
 
-  classes = () => this.useStyles;
+  // const classes = () => this.useStyles;
   
-  muteVolume = (value, event) => {
-    let newMute = !this.state.mute
-    this.setState({
-      mute: newMute,
-      previousVolume: this.state.volume,
-      volume: (newMute ? 0 : this.state.previousVolume)
-    })
-  };
-  
-    handleChange = (event, newValue) => {
-      this.setState({volume: newValue})
-      if(this.state.volume >= 80){
-        this.setState({volumeNotification: true})
-      }
-    }
+ 
 
-  render (){
-    return (
-    <Card className={this.classes.card}>
+    <Card>
       <CardContent>
-       <div className={this.classes.root}>
+       <div>
         <Typography id="discrete-slider" gutterBottom>
           Volume
         </Typography>
@@ -77,14 +52,16 @@ export default class MasterVolumeCard extends Component {
           marks
           min={0}
           max={100}
-          value={this.state.volume}
-          onChange={this.handleChange}
+          value={props.volume}
+          onChange={props.volumeChange}
         />
       </div> 
       </CardContent>
       <CardActions>
-    <Button size="small" onClick={()=>this.muteVolume()}>{this.state.mute ? "Unmute" : "Mute"}</Button>
+    <Button size="small" onClick={() => props.muteVolume()}>{props.mute ? "Unmute" : "Mute"}</Button>
       </CardActions>
     </Card>
-    )};
-  }
+);
+  
+
+export default MasterVolumeCard;
