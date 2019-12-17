@@ -36,14 +36,14 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-
-export default function SoundQuality() {
+export default function SoundQuality(props) {
 	const classes = useStyles();
 	const [SoundQuality, setSoundQuality] = React.useState("");
 	const [open, setOpen] = React.useState(false);
 
 	const handleChange = event => {
-		SoundQuality(event.target.value);
+		let quality = event.target.value
+
 	};
 
 	const handleClose = () => {
@@ -70,13 +70,8 @@ export default function SoundQuality() {
 
 					<FormControl className={classes.formControl}>
 						<Select
-							open={open}
-							onClose={handleClose}
-							onOpen={handleOpen}
-							value={setSoundQuality}
-							onChange={setSoundQuality}
-							onChange={handleChange}
-						>
+							value={props.soundQuality}
+							onChange={props.qualityChange}>
 							<MenuItem value={'Low'}>Low</MenuItem>
 							<MenuItem value={'Normal'}>Normal</MenuItem>
 							<MenuItem value={'High'}>High</MenuItem>

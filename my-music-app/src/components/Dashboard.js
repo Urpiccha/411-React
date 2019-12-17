@@ -18,7 +18,6 @@ export default class Dashboard extends Component{
 			previousVolume: 40,
 			volumeNotification: false,
 			notifications: []
-
 		};
 	}
 
@@ -70,14 +69,14 @@ export default class Dashboard extends Component{
 		  }
 	  }
 
-	SoundQuality = (event) => {
+	handleSoundQuality = (event) => {
 		this.setState({quality: event.target.value});
 		const alert = "The music quality is degraded. Increase the quality if you want to better sounding music."
 
-		if ((event.target.value === 'low') && !this.state.notifications.includes (alert)) {
-			this.addNotification (alert)
+		if ((event.target.value === 'Low') && !this.state.notifications.includes (alert)) {
+			this.toggleNotification (alert)
 		}
-		if ((event.target.value !== 'low') && this.state.notifications.includes (alert)) {
+		if ((event.target.value !== 'Low') && this.state.notifications.includes (alert)) {
 			this.removeNotification (alert)
 		}
 	}
@@ -92,9 +91,15 @@ export default class Dashboard extends Component{
 
 	render(){
 		return (
-			<div>
+			<>
 				<h1>Welcome User!</h1>
 				<NavBar />
+				<Grid
+					container
+					direction="row"
+					justify="center"
+					alignItems="center"
+					>
 				<MasterVolumeCard 
 					volume={this.state.volume}
 					volumeChange={this.handleVolumeChange}
@@ -102,16 +107,18 @@ export default class Dashboard extends Component{
 					mute={this.state.mute}>
 				</MasterVolumeCard>
 				<SoundQuality 
-					SoundQuality={this.handleSoundQuality}>
+					soundQuality={this.state.quality}
+					qualityChange={this.handleSoundQuality}>
 				</SoundQuality>
 				<OnlineMode 
 					checked={this.state.online}
 					handleChange={this.toggleOnline}>
 				</OnlineMode>
-				<div><h1>System Notifications</h1>
-					<p>{this.state.notifications}</p>
-				</div>
-			</div>
+					<div><h1>System Notifications</h1>
+						<p>{this.state.notifications}</p>
+					</div>
+				</Grid>
+			</>
 		);
 	}
 }
